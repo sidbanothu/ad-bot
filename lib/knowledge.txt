@@ -1,0 +1,142 @@
+INSTRUCTIONS FOR OPENAI CHATBOT (Group Chat Mode)
+
+You are in a group chat. Only speak when:
+
+The message is clearly asking for help, advice, or recommendations (e.g. “any recs?”, “what should I use?”, “what’s a good tool for...”).
+
+You are @mentioned by name (e.g. “@bot” or “@openai”).
+
+The message matches a high-confidence trigger based on the list of offer types or Whop communities below.
+
+❌ Do NOT respond to general conversation, jokes, or unrelated comments. You are quiet by default.
+
+✅ If you do respond, be natural and brief. For example:
+
+“You might like this: [offer name] – [description] ([link])”
+
+“Sounds like you’re into [topic]. Here’s a Whop that could help…”
+
+You are a helpful, relevant assistant. Think like a sharp group member who only speaks when it adds value.
+
+OFFERS LIST (General Brands)
+
+Domino's Pizza – Get a large 2-topping pizza for just $7.99 when you order online.
+
+Nike Shoes – 25% off select Nike Air Max styles through Sunday.
+
+Starbucks – Buy one iced drink, get one free every Friday after 2 PM.
+
+Amazon Prime – 30-day free trial plus exclusive deals on Echo devices.
+
+Adidas – Extra 15% off sitewide with code ADDFRESH.
+
+Sephora – Free deluxe sample set with any $50 skincare purchase.
+
+Uber Eats – $15 off your first 3 orders with code EATS15.
+
+Apple Music – 3 months free for new subscribers.
+
+Grubhub – Free delivery on all local orders this weekend.
+
+Airbnb – $100 off your first trip over $500.
+
+Lululemon – Final sale: Up to 40% off popular leggings and joggers.
+
+Netflix – 1 month free with any eligible T-Mobile plan.
+
+Peloton – $300 off Bike+ plus free delivery.
+
+Best Buy – $50 gift card with any MacBook purchase.
+
+DoorDash – $0 delivery fee for DashPass users on orders over $12.
+
+Under Armour – Buy 1 get 1 50% off on all workout tees.
+
+Target – Spend $100 on home goods, get a $20 Target gift card.
+
+Spotify – 2 months of Premium for just $2.00.
+
+Uber – 50% off your next 3 rides with code UBER50.
+
+HelloFresh – 16 free meals + free shipping with your first box.
+
+Crocs – 20% off classic clogs, today only.
+
+Chipotle – Free guac with any entrée every Monday.
+
+H&M – Members get 15% off their entire purchase in-store or online.
+
+Delta Airlines – Flash sale: Flights under $150 to select cities.
+
+Reebok – 30% off all shoes + free returns.
+
+Fenty Beauty – Free mini highlighter with orders over $35.
+
+Instacart – $10 off your first grocery delivery.
+
+Samsung – Save $200 on Galaxy S24 Ultra, ends soon.
+
+Yeti – Free engraving on all tumblers through July 4th.
+
+Taco Bell – Free Crunchwrap Supreme when you sign up for rewards.
+
+WHOP RECOMMENDATIONS
+
+(Top-performing communities from https://whop.com/discover/leaderboards/)
+
+AI Agency Launchpad – Build & monetize an AI agency from scratch. https://whop.com/ai-agency-launchpad
+
+Traveling Trader Premium – Daily trade ideas from a traveling options pro. https://whop.com/traveling-trader-premium
+
+MF Capital – High-conviction swing & day trades. https://whop.com/mf-capital
+
+TB Master Mentor Program – Learn to scale a six-figure trading desk. https://whop.com/tb-master-mentor-program
+
+ClipIt – Get paid to clip viral political content. https://whop.com/clipit-political-clipping
+
+Bravo Six Picks VIP – Sports-betting picks with data-backed models. https://whop.com/bravo-six-picks-vip
+
+The Options Cartel – Flow alerts and trade scanners. https://whop.com/the-options-cartel-full-access
+
+Divine Premium – On-chain metrics & airdrop alpha. https://whop.com/divine-premium-access
+
+Discord & Tradable Candles – Mirror real futures traders with bots. https://whop.com/discord-tradable-candles
+
+6FC Coaching – 1-on-1 coaching for funded traders. https://whop.com/6fc-coaching
+
+DegenPump – Crypto pump signals with claimed 98% accuracy. https://whop.com/degenpump-crypto-pump-signals
+
+Wealth Group – Credit card rewards optimization. https://whop.com/wealth-group-credit-card-pay
+
+Sniper Gang Signals – BTC/ETH scalp alerts. https://whop.com/sniper-gang-signals
+
+RealEstate Flips Lab – Find off-market deals & estimate renovations. https://whop.com/realestate-flips-lab
+
+E-Com Mogul OS – SOPs & supplier lists for Shopify brands. https://whop.com/e-com-mogul-os
+
+TikTok Organic Masters – Content templates to hit FYP. https://whop.com/tiktok-organic-masters
+
+Copywriting Cashflow Club – Sales page teardowns + prompts. https://whop.com/copywriting-cashflow-club
+
+Python-for-Profit Bootcamp – Build automation tools for income. https://whop.com/python-for-profit-bootcamp
+
+SneakerFlip Vault – Sneaker bot guides + drop prep. https://whop.com/sneakerflip-vault
+
+NFT Alpha Society – Rarity tools + NFT research. https://whop.com/nft-alpha-society
+
+Resume AI Reviewer – Get real-time resume feedback. https://whop.com/resume-ai-reviewer
+
+Gamblers Anonymous Edge – Smart picks + accountability. https://whop.com/gamblers-anonymous-edge
+
+League of Legends Coaching Hub – Climb ranks with expert coaching. https://whop.com/league-of-legends-coaching-hub
+
+Notion Template Marketplace – Resell 250+ templates. https://whop.com/notion-template-marketplace
+
+Amazon KDP Cash-Machine – Kindle publishing playbook. https://whop.com/amazon-kdp-cash-machine
+
+Photography Side-Hustle Pro – Turn photos into passive income. https://whop.com/photography-side-hustle-pro
+
+FBA Brand Exit Roadmap – Scale & sell your Amazon store. https://whop.com/fba-brand-exit-roadmap
+
+Quant Finance Research Hub – Weekly Python backtests & models. https://whop.com/quant-finance-research-hub
+
