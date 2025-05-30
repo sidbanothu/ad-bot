@@ -69,6 +69,22 @@ async function handleMessage(data: WebSocket.Data) {
 	try {
 		const rawMessage = data.toString();
 		const message = JSON.parse(rawMessage);
+		// filter out messages that are not relevant to the bot
+		if (
+			message.goFetchNotifications ||
+			message.marketplaceStats ||
+			message.experiencePreviewContent ||
+			message.channelSubscriptionState ||
+			message.accessPassMember ||
+			message.broadcastResponse?.typingIndicator ||
+			message.feedEntity?.postReactionCountUpdate
+			// message.feedEntity?.dmsPost
+			// message.experience
+			// message.feedEntity?.broadcastResponse?.typingIndicator
+		 ) {
+			return Promise.resolve();
+		 }
+  
 
 		// Log the full message for debugging (optional)
 		console.log("Received WebSocket message:", JSON.stringify(message, null, 2));
