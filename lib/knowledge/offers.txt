@@ -1,0 +1,119 @@
+# Active Offers Database
+# Format: Brand/Name – Description (optional URL)
+
+# ============================================================================
+# WHOP.COM OFFERS
+# ============================================================================
+
+## Trading & Investing
+MF Capital – High-conviction swing & day trades. https://whop.com/mf-capital
+TB Master Mentor Program – Learn to scale a six-figure trading desk. https://whop.com/tb-master-mentor-program
+The Options Cartel – Flow alerts and trade scanners. https://whop.com/the-options-cartel-full-access
+Traveling Trader Premium – Daily trade ideas from a traveling options pro. https://whop.com/traveling-trader-premium
+Sniper Gang Signals – BTC/ETH scalp alerts. https://whop.com/sniper-gang-signals
+DegenPump – Crypto pump signals with claimed 98% accuracy. https://whop.com/degenpump-crypto-pump-signals
+Divine Premium – On-chain metrics & airdrop alpha. https://whop.com/divine-premium-access
+Quant Finance Research Hub – Weekly Python backtests & models. https://whop.com/quant-finance-research-hub
+
+## Business & Coaching
+AI Agency Launchpad – Build & monetize an AI agency from scratch. https://whop.com/ai-agency-launchpad
+6FC Coaching – 1-on-1 coaching for funded traders. https://whop.com/6fc-coaching
+E-Com Mogul OS – SOPs & supplier lists for Shopify brands. https://whop.com/e-com-mogul-os
+Copywriting Cashflow Club – Sales page teardowns + prompts. https://whop.com/copywriting-cashflow-club
+FBA Brand Exit Roadmap – Scale & sell your Amazon store. https://whop.com/fba-brand-exit-roadmap
+Amazon KDP Cash-Machine – Kindle publishing playbook. https://whop.com/amazon-kdp-cash-machine
+Notion Template Marketplace – Resell 250+ templates. https://whop.com/notion-template-marketplace
+
+## Content & Social
+ClipIt – Get paid to clip viral political content. https://whop.com/clipit-political-clipping
+TikTok Organic Masters – Content templates to hit FYP. https://whop.com/tiktok-organic-masters
+Photography Side-Hustle Pro – Turn photos into passive income. https://whop.com/photography-side-hustle-pro
+
+## Tech & Software
+Python-for-Profit Bootcamp – Build automation tools for income. https://whop.com/python-for-profit-bootcamp
+Resume AI Reviewer – Get real-time resume feedback. https://whop.com/resume-ai-reviewer
+Discord & Tradable Candles – Mirror real futures traders with bots. https://whop.com/discord-tradable-candles
+
+## Gambling & Sports
+Bravo Six Picks VIP – Sports-betting picks with data-backed models. https://whop.com/bravo-six-picks-vip
+Gamblers Anonymous Edge – Smart picks + accountability. https://whop.com/gamblers-anonymous-edge
+
+## Gaming & Entertainment
+League of Legends Coaching Hub – Climb ranks with expert coaching. https://whop.com/league-of-legends-coaching-hub
+
+## Finance & Wealth
+Wealth Group – Credit card rewards optimization. https://whop.com/wealth-group-credit-card-pay
+RealEstate Flips Lab – Find off-market deals & estimate renovations. https://whop.com/realestate-flips-lab
+
+## Fashion & Reselling
+SneakerFlip Vault – Sneaker bot guides + drop prep. https://whop.com/sneakerflip-vault
+NFT Alpha Society – Rarity tools + NFT research. https://whop.com/nft-alpha-society
+
+# ============================================================================
+# EXTERNAL OFFERS
+# ============================================================================
+
+## Food & Delivery
+Domino's Pizza – Get a large 2-topping pizza for just $7.99 when you order online.
+Starbucks – Buy one iced drink, get one free every Friday after 2 PM.
+Uber Eats – $15 off your first 3 orders with code EATS15.
+Grubhub – Free delivery on all local orders this weekend.
+DoorDash – $0 delivery fee for DashPass users on orders over $12.
+HelloFresh – 16 free meals + free shipping with your first box.
+Chipotle – Free guac with any entrée every Monday.
+Taco Bell – Free Crunchwrap Supreme when you sign up for rewards.
+
+## Fashion & Shopping
+Nike Shoes – 25% off select Nike Air Max styles through Sunday.
+Adidas – Extra 15% off sitewide with code ADDFRESH.
+Sephora – Free deluxe sample set with any $50 skincare purchase.
+Lululemon – Final sale: Up to 40% off popular leggings and joggers.
+Under Armour – Buy 1 get 1 50% off on all workout tees.
+Target – Spend $100 on home goods, get a $20 Target gift card.
+H&M – Members get 15% off their entire purchase in-store or online.
+Reebok – 30% off all shoes + free returns.
+Crocs – 20% off classic clogs, today only.
+Fenty Beauty – Free mini highlighter with orders over $35.
+
+## Entertainment & Streaming
+Amazon Prime – 30-day free trial plus exclusive deals on Echo devices.
+Apple Music – 3 months free for new subscribers.
+Netflix – 1 month free with any eligible T-Mobile plan.
+Spotify – 2 months of Premium for just $2.00.
+Peloton – $300 off Bike+ plus free delivery.
+
+## Travel & Accommodation
+Airbnb – $100 off your first trip over $500.
+Delta Airlines – Flash sale: Flights under $150 to select cities.
+
+## Tech & Electronics
+Best Buy – $50 gift card with any MacBook purchase.
+Samsung – Save $200 on Galaxy S24 Ultra, ends soon.
+Yeti – Free engraving on all tumblers through July 4th.
+
+## Services & Utilities
+Uber – 50% off your next 3 rides with code UBER50.
+Instacart – $10 off your first grocery delivery.
+
+## Sports Betting & Gaming
+DraftKings Sportsbook – Bet $5 and get $150 in bonus bets instantly. New customers only.
+DraftKings Daily Fantasy – Enter $1 contests with a chance to win thousands.
+DraftKings Casino – Play slots, blackjack, and more. Get up to $2,000 in deposit bonuses.
+FanDuel Sportsbook – Your first bet is risk-free up to $1,000. Win or get it back in bonus bets.
+FanDuel DFS – Join a daily fantasy NBA or NFL contest today — new users get free entries.
+FanDuel Casino – Play your first day risk-free up to $1,000. Slots, live dealer, and more.
+BetMGM Sportsbook – Get $1,500 back in bonus bets if your first bet doesn't hit.
+BetMGM Casino – 100% deposit match up to $1,000 + 100 free spins.
+BetMGM Poker – Sign up now and get up to $600 bonus for your first deposit.
+
+# ============================================================================
+# NOTES
+# ============================================================================
+# • Whop.com offers are prioritized in matching
+# • Add new offers in the appropriate section
+# • Format: Brand/Name – Description (URL if available)
+# • Keep descriptions clear and include key benefits
+# • Add urgency indicators when relevant
+# • Include any discount codes or special terms
+# • Verify all external offers before adding
+# • Update expiration dates and terms regularly 
