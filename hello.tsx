@@ -3,6 +3,17 @@ import dotenv from "dotenv";
 import axios from "axios";
 import fs from "fs";
 import fetch, { Response } from "node-fetch";
+import { gql } from '@apollo/client';
+
+export const GET_PRODUCTS = gql`
+query GetProducts {
+  products {
+	 id
+	 name
+  }
+}
+`;
+console.log(GET_PRODUCTS);
 
 dotenv.config();
 
