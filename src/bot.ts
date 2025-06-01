@@ -5,6 +5,8 @@ import fetch, { Response } from "node-fetch";
 
 dotenv.config();
 
+const BOT_DISPLAY_NAME = "@ad-bot's agent";
+
 // ============================================================================
 // TYPES & INTERFACES
 // ============================================================================
@@ -30,6 +32,7 @@ interface WhopDMPost {
 	userId: string;
 	content: string;
 	user?: { name?: string };
+	replyingToPostId?: string;
 }
 
 interface WhopMessage {
@@ -82,8 +85,8 @@ const CONFIG = {
 		userId: process.env.BOT_ADMIN_USER_ID!,
 	},
 	rateLimit: {
-		globalMax: 3,
-		globalWindowMs: 5 * 60 * 1000, // 5 minutes
+		globalMax: 100,
+		globalWindowMs: 60 * 1000, // 1 minute
 		userMax: 5,
 		userWindowMs: 60 * 1000, // 1 minute
 		cooldownMs: 15 * 60 * 1000, // 15 minutes between responses
@@ -113,11 +116,17 @@ const conversationHistory = new Map<string, Conversation>();
 const userRateLimits = new Map<string, RateLimit>();
 const lastResponseTimes = new Map<string, number>();
 const conversationState = new Map<string, { lastBotResponseTime: number, lastBotResponseUserId: string }>();
+const userMessageHistory = new Map<string, { messages: string[]; timestamps: number[]; spamUntil?: number }>();
+let globalResponseTimestamps: number[] = [];
 
 let globalRateLimit = {
 	count: 0,
 	resetTime: Date.now() + CONFIG.rateLimit.globalWindowMs
 };
+
+const botPostIds = new Set<string>();
+
+const respondedUsersPerFeed = new Map<string, Set<string>>();
 
 // ============================================================================
 // UTILITY FUNCTIONS
@@ -261,8 +270,16 @@ async function sendMessage(feedId: string, message: string): Promise<void> {
 		body: JSON.stringify(query)
 	});
 
+	const data: any = await response.json();
+	console.log("[DEBUG] sendMessage API response:", JSON.stringify(data, null, 2));
+
 	if (!response.ok) {
 		throw new Error(`Whop API error: ${response.status} ${response.statusText}`);
+	}
+
+	if (data && data.data && typeof data.data.sendMessage === 'string') {
+		botPostIds.add(data.data.sendMessage);
+		console.log(`[TRACK] Added bot post ID: ${data.data.sendMessage}`);
 	}
 }
 
@@ -411,31 +428,88 @@ async function handleMessage(data: WebSocket.Data): Promise<void> {
 		// Ignore own messages
 		if (dmsPost.userId === CONFIG.whop.agentId) return;
 
-		// Content filtering
-		if (shouldIgnoreContent(dmsPost.content)) {
-			if (botState.debugMode) {
-				console.log(`[IGNORE] Content: "${dmsPost.content}"`);
+		// Global flood control
+		const now = Date.now();
+		const oneMinuteAgo = now - 60 * 1000;
+		globalResponseTimestamps = globalResponseTimestamps.filter(ts => ts > oneMinuteAgo);
+		if (globalResponseTimestamps.length >= 20) {
+			console.log(`[FLOOD] Global response limit hit (${globalResponseTimestamps.length} in last minute). Skipping message from ${dmsPost.user?.name || dmsPost.userId}`);
+			return;
+		}
+
+		// Spam protection
+		let userHistory = userMessageHistory.get(dmsPost.userId);
+		if (!userHistory) {
+			userHistory = { messages: [], timestamps: [] };
+			userMessageHistory.set(dmsPost.userId, userHistory);
+		}
+		const twoMinutesAgo = now - 2 * 60 * 1000;
+		userHistory.messages = userHistory.messages.filter((_, i) => userHistory.timestamps[i] > twoMinutesAgo);
+		userHistory.timestamps = userHistory.timestamps.filter(ts => ts > twoMinutesAgo);
+		if (userHistory.spamUntil && now < userHistory.spamUntil) {
+			console.log(`[SPAM] Ignoring user ${dmsPost.user?.name || dmsPost.userId} until ${new Date(userHistory.spamUntil).toISOString()}`);
+			return;
+		}
+		userHistory.messages.push(dmsPost.content);
+		userHistory.timestamps.push(now);
+		const msgCount = userHistory.messages.filter(m => m === dmsPost.content).length;
+		if (msgCount >= 3) {
+			userHistory.spamUntil = now + 5 * 60 * 1000;
+			console.log(`[SPAM] User ${dmsPost.user?.name || dmsPost.userId} flagged for spam for 5 minutes (sent same message 3+ times in 2 minutes)`);
+			return;
+		}
+
+		// In handleMessage, before content filtering:
+		const botMentioned = dmsPost.content.toLowerCase().includes(BOT_DISPLAY_NAME.toLowerCase());
+		const isReplyToBot = dmsPost.replyingToPostId && botPostIds.has(dmsPost.replyingToPostId);
+		const feedId = dmsPost.feedId;
+		const userId = dmsPost.userId;
+		let respondedSet = respondedUsersPerFeed.get(feedId);
+		if (!respondedSet) {
+			respondedSet = new Set();
+			respondedUsersPerFeed.set(feedId, respondedSet);
+		}
+
+		// Proactive/reactive logic
+		if (!respondedSet.has(userId)) {
+			// User has not received a bot response in this feed
+			if (shouldIgnoreContent(dmsPost.content)) {
+				console.log(`[IGNORE] Content filtered (proactive): "${dmsPost.content}" from ${dmsPost.user?.name || userId} in feed ${feedId}`);
+				return;
 			}
-			return;
+			// No cooldown for new user's first relevant message
+			console.log(`[PROACTIVE] Responding to new user ${dmsPost.user?.name || userId} in feed ${feedId} (no cooldown)`);
+			// After responding, add user to set (done after sendMessage)
+		} else {
+			// User has already received a bot response in this feed
+			// Cooldown applies only to further proactive messages
+			if (!botMentioned && !isReplyToBot) {
+				if (isInCooldown(feedId, userId)) {
+					console.log(`[COOLDOWN] Conversation in cooldown for feed ${feedId}, user ${dmsPost.user?.name || userId} (proactive)`);
+					return;
+				}
+				console.log(`[IGNORE] Message ignored (reactive): "${dmsPost.content}" from ${dmsPost.user?.name || userId} in feed ${feedId} (already responded, not a mention or reply)`);
+				return;
+			}
+			if (botMentioned) {
+				console.log(`[MENTION] Allowing message because bot was mentioned by ${dmsPost.user?.name || userId} (cooldown skipped).`);
+			}
+			if (isReplyToBot) {
+				console.log(`[REPLY] Allowing message because it is a reply to a bot message by ${dmsPost.user?.name || userId} (cooldown skipped).`);
+			}
 		}
 
-		// Rate limiting checks
+		// Rate limiting
 		if (isGloballyRateLimited()) {
-			console.log("⏳ Global rate limit reached");
+			console.log(`[RATE LIMIT] Global rate limit reached. Skipping message from ${dmsPost.user?.name || dmsPost.userId}`);
 			return;
 		}
-
 		if (isRateLimited(dmsPost.userId)) {
-			console.log("⏳ User rate limited:", dmsPost.userId);
+			console.log(`[RATE LIMIT] User rate limited: ${dmsPost.user?.name || dmsPost.userId}`);
 			return;
 		}
 
-		if (isInCooldown(dmsPost.feedId, dmsPost.userId)) {
-			console.log("⏳ Conversation in cooldown");
-			return;
-		}
-
-		console.log(`\n📥 Processing message from ${dmsPost.user?.name || dmsPost.userId}: "${dmsPost.content}"`);
+		console.log(`[PROCESS] Generating response for ${dmsPost.user?.name || dmsPost.userId}: "${dmsPost.content}"`);
 
 		// Send typing indicator and generate response
 		await sendTypingIndicator(dmsPost.feedId, true);
@@ -445,15 +519,26 @@ async function handleMessage(data: WebSocket.Data): Promise<void> {
 		await sendTypingIndicator(dmsPost.feedId, false);
 
 		if (aiResponse) {
-			await sendMessage(dmsPost.feedId, aiResponse);
+			// Mention the user in the response
+			const userMention = dmsPost.user?.name ? `@${dmsPost.user.name}` : `@${dmsPost.userId}`;
+			const finalResponse = `${userMention}, ${aiResponse}`;
+			await sendMessage(dmsPost.feedId, finalResponse);
 			conversationState.set(dmsPost.feedId, {
 				lastBotResponseTime: Date.now(),
 				lastBotResponseUserId: dmsPost.userId
 			});
-			console.log(`📤 Sent response: "${aiResponse}"`);
+			globalResponseTimestamps.push(Date.now());
+			console.log(`[SENT] Sent response to ${dmsPost.user?.name || dmsPost.userId}: "${finalResponse}"`);
+
+			if (!respondedSet.has(userId)) {
+				respondedSet.add(userId);
+				console.log(`[TRACK] Added user ${dmsPost.user?.name || userId} to responded set for feed ${feedId}`);
+			}
 		} else {
-			console.log("❌ No AI response generated");
+			console.log(`[NO RESPONSE] No AI response generated for ${dmsPost.user?.name || dmsPost.userId}`);
 		}
+
+		console.log('[DEBUG] dmsPost object:', JSON.stringify(dmsPost, null, 2));
 
 	} catch (error) {
 		console.error("❌ Message handling error:", error);
